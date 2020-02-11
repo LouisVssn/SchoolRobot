@@ -34,7 +34,7 @@ No unexplored
  squares left
 </pre>
 */
-public class WolfMM extends Creature {
+public class LVRobot extends Creature {
 
     /** If true, hides the toString method */
     final static private boolean RELEASE_MODE = true;
