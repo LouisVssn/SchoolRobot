@@ -1,7 +1,10 @@
+import java.util.Random;
+
 /** A rover that looks before it moves. */
 public class LVRobot extends Creature {
     
     static private int [][] ay;
+    static private Random r = new Random();
 	
     public void run() {
         
@@ -9,27 +12,29 @@ public class LVRobot extends Creature {
     	int height = getMapDimensions().height;
     	ay = new int [height][width];
     	
-    	printMap(height, width, ay);
-    	
     	
     	while (true) {
     		
     		Observation obs = observe()[0];
-            
-    		turnLeft();
     		
     		for(int u = 0; u < 100000; u++) {
-    		moveForward();
-    			if(!moveForward()) {
-    				attack();
-    			}else {
-    				moveForward();
+    			moveForward();
+    				if(!moveForward()) {
+    					attack();
+    					turn90Random();
+    					moveForward();
+    				}else {
+    					moveForward();
+    					
+    				}
+    				printMap(height, width, ay);
+    			
     			}
-    		
+    				
     		}
     		
-    		}
-    		}
+    	}
+    
         
     
     
@@ -39,15 +44,26 @@ public class LVRobot extends Creature {
     		for(int b = 0; b < ay[0].length; b++) {
     			System.out.println(ay[i][b]);
     		}
-    		System.out.println("");
+    		System.out.println("" + "\n");
     	}
-    	System.out.println("");
+    	System.out.println("" + "\n");
     	System.out.println("");
     }
     
     
+    public void turn90Random() {
+    	switch (r.nextInt(2)) {
+    	case 0:
+    	    turnLeft();
+    	    break;
+
+    	case 1:
+    	    turnRight();
+    	    break;
+    	}
+        }
     
-  
+   
 
     @Override
 	public String getAuthorName() {
