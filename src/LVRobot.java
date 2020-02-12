@@ -1,3 +1,5 @@
+import java.awt.Dimension;
+import java.awt.Point;
 import java.util.Random;
 
 /** A rover that looks before it moves. */
@@ -44,12 +46,12 @@ public class LVRobot extends Creature {
     		for(int b = 0; b < ay[0].length; b++) {
     			System.out.println(ay[i][b]);
     		}
-    		System.out.println("" + "\n");
+    		System.out.println("");
     	}
-    	System.out.println("" + "\n");
+    	System.out.println("");
     	System.out.println("");
     }
-    
+
     
     public void turn90Random() {
     	switch (r.nextInt(2)) {
