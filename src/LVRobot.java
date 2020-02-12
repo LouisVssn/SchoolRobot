@@ -42,14 +42,14 @@ public class LVRobot extends Creature {
     
     
     public void printMap(int height, int width, int[][] ay) {
-    	for(int i = 0; i < ay.length; i++) {
-    		for(int b = 0; b < ay[0].length; b++) {
-    			System.out.println(ay[i][b]);
+    	for(int i = 0; i < height; i++) {
+    		for(int b = 0; b < width; b++) {
+    			System.out.print(ay[i][b]);
     		}
-    		System.out.println("");
+    		System.out.print("");
     	}
-    	System.out.println("");
-    	System.out.println("");
+    	System.out.print("");
+    	System.out.print("");
     }
 
     
