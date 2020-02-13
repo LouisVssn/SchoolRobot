@@ -1,25 +1,24 @@
-import java.awt.Dimension;
-import java.awt.Point;
-import java.util.Random;
 
-/** A rover that looks before it moves. */
+import java.util.Random;
+import java.lang.StringBuilder;
+
 public class LVRobot extends Creature {
     
-    static private int [][] ay;
+    final int width = getMapDimensions().width;
+	final int height = getMapDimensions().height;
+    Observation[][] map = new Observation[width][height];
     static private Random r = new Random();
 	
     public void run() {
-        
-    	int width = getMapDimensions().width;
-    	int height = getMapDimensions().height;
-    	ay = new int [height][width];
-    	
-    	
+    		
     	while (true) {
     		
-    		Observation obs = observe()[0];
+    		Observation[] obs = observe();
+    		for(int xy = 0; xy < obs.length; xy++) {
+    			map[obs[xy].position.x][obs[xy].position.y] = obs[xy];
     		
-    		for(int u = 0; u < 100000; u++) {
+    		
+    		for(int u = 0; u < 100000; u++) {   			
     			moveForward();
     				if(!moveForward()) {
     					attack();
@@ -29,28 +28,34 @@ public class LVRobot extends Creature {
     					moveForward();
     					
     				}
-    				printMap(height, width, ay);
+    				printMap(height, width, map);
     			
     			}
-    				
+    		}
     		}
     		
     	}
     
-        
-    
-    
-    
-    public void printMap(int height, int width, int[][] ay) {
-    	for(int i = 0; i < height; i++) {
-    		for(int b = 0; b < width; b++) {
-    			System.out.print(ay[i][b]);
+    //print Map in a StringBuilder and sets a value for a type     
+    public void printMap(int height, int width, Observation[][] a) {
+    	StringBuilder textMap = new StringBuilder();
+    	for(int x = 0; x < height; x++) {
+    		for(int y = 0; y < width; y++) {
+    			if(y == width) {
+    				textMap.append("\n");
+    			}
+    			if(map[x][y] == null) {
+    				textMap.append("#");
+    			}
+    			if(map[x][y].type.name() == "WALL") {
+    				textMap.append("X");
+    			}
+    			textMap.append(a[x][y]);
     		}
-    		System.out.print("");
     	}
-    	System.out.print("");
-    	System.out.print("");
+    	System.out.print(textMap);
     }
+    
 
     
     public void turn90Random() {
@@ -62,7 +67,7 @@ public class LVRobot extends Creature {
     	case 1:
     	    turnRight();
     	    break;
-    	}
+    		}
         }
     
    
