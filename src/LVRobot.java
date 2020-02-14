@@ -16,7 +16,7 @@ public class LVRobot extends Creature {
     		Observation[] obs = observe();
     		for(int xy = 0; xy < obs.length; xy++) {
     			map[obs[xy].position.x][obs[xy].position.y] = obs[xy];
-    		
+    		}
     		
     		for(int u = 0; u < 100000; u++) {   			
     			moveForward();
@@ -26,12 +26,11 @@ public class LVRobot extends Creature {
     					moveForward();
     				}else {
     					moveForward();
-    					
     				}
     				printMap(height, width, map);
     			
     			}
-    		}
+    		
     		}
     		
     	}
