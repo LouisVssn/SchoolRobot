@@ -3,7 +3,6 @@ public class SuperRover extends Creature {
     @Override
 	public void run() {
         while (true) {
-            
             Observation obs = observe()[0];
             
             int d = distance(obs.position) - 1;
