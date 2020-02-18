@@ -12,6 +12,11 @@ public class LVRobot extends Creature {
 
 		while (true) {
 			Observation[] obs = observe();
+			for(int i = 0; i < obs.length; i++) {
+				map[obs[i].position.x][obs[i].position.y] = obs[i];
+			}
+
+
 			for (int u = 0; u < 100000; u++) {
 				moveForward();
 				if (!moveForward()) {
@@ -23,9 +28,7 @@ public class LVRobot extends Creature {
 				}
 				printMap(height, width, map);
 				}
-			
     		}
-    	
 		}
 
 	public void turn90Random2() {
@@ -52,9 +55,10 @@ public class LVRobot extends Creature {
 					textMap.append("#");
 				}
 				//TODO: FEHLER
-				if(map[x][y].type == Type.WALL) {
+				if(map[x][y].type == Type.WALL && map[x][y] != null) {
 					textMap.append("X");
 				}
+
 				textMap.append(map[x][y]);
 			}
 		}
@@ -68,6 +72,6 @@ public class LVRobot extends Creature {
 
     @Override
 	public String getDescription() {
-        return "A rover that looks before it moves.";
+        return "A Robot.";
     }
 }
