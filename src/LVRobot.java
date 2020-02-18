@@ -12,6 +12,7 @@ public class LVRobot extends Creature {
 
 		while (true) {
 			Observation[] obs = observe();
+			//Type a = obs[1].type;
 			for(int i = 0; i < obs.length; i++) {
 				map[obs[i].position.x][obs[i].position.y] = obs[i];
 			}
@@ -45,6 +46,7 @@ public class LVRobot extends Creature {
 
 	//print Map in a StringBuilder and sets a value for a type
 	public void printMap(int height, int width, Observation[][] map) {
+		String typ = ".type";
 		StringBuilder textMap = new StringBuilder();
 		for(int x = 0; x < width; x++) {
 			for(int y = 0; y < height; y++) {
